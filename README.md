@@ -57,11 +57,25 @@ A correct `eval.js` prints exactly this table. If your numbers differ, your metr
 
 ## Write up your findings
 
-Add a short interpretation (4 to 6 sentences) to this README or a `RESULT.md`:
-- Which system is better overall, and on which metric(s)?
-- Which queries did keyword search win, and what do those queries have in common?
-- Which queries did semantic search win, and what do those have in common?
-- One sentence on why a team would still keep the weaker system around (hint: the two systems win on different queries).
+## Results
+
+```text
+| Query | Keyword rank | Semantic rank |
+|---|---|---|
+| my redis cache keeps showing old data | 8 | 1 |
+| how do I add semantic search to a table I already have | miss | 2 |
+| redis or memcached for caching | 1 | 2 |
+| why did my query get slower after I added an index | miss | 1 |
+| what does ACID actually guarantee | 2 | 1 |
+| how do I keep my postgres online while changing the schema | 6 | 3 |
+| my background jobs stop after every deploy | miss | 2 |
+| how do I let my database accept more writes per second | 4 | 1 |
+| sql or nosql for a new product | 1 | 3 |
+| why does my redis memory keep climbing | miss | 2 |
+| **Summary** | **MRR 0.30 · Recall@10 0.60** | **MRR 0.67 · Recall@10 1.00** |
+```
+
+Semantic search is better overall: its MRR is 0.67 versus 0.30 and its Recall@10 is 1.00 versus 0.60. Keyword search wins on “redis or memcached for caching” and “sql or nosql for a new product,” which are direct comparisons containing the exact technology terms. Semantic search wins on the other eight queries—covering stale cache data, adding semantic search, slow indexed queries, ACID guarantees, online schema changes, failed jobs after deploys, write throughput, and growing Redis memory—because these natural-language troubleshooting and how-to questions benefit from matching intent. A team would still keep keyword search because it excels on precise, term-driven comparisons and can complement semantic search in a hybrid system.
 
 ## Take it further (optional)
 
